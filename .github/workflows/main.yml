@@ -1,0 +1,47 @@
+name: JDK Compiler
+run-name: build jdk8 codeql db
+on: [push]
+  # schedule:
+  #   - cron: '0 0 1 * *'
+
+env:
+  ACTIONS_STEP_DEBUG: true
+
+jobs:
+
+  checkout-jdk8-src:
+    runs-on: ubuntu-22.04
+    permissions:
+      security-events: write
+    steps:
+      - name: Install deps
+        run: |
+          sudo apt-get update && 
+          sudo apt-get install -y wget git gcc g++ make file unzip zip libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev libfontconfig1-dev
+      - name: Checkout bootJDK
+        uses: actions/checkout@v4
+      - name: Prepare bootJDK
+        run: |
+          tar zxvf jdk-7u80-linux-x64.tar.gz bootJDK &&
+          export JAVA_HOME=$(pwd)/bootJDK/jdk1.7.0_80 && 
+          echo $JAVA_HOME
+      - name: Prepare CodeQL CLI
+        run: |
+          wget https://github.com/github/codeql-cli-binaries/releases/download/v2.15.3/codeql-linux64.zip && 
+          unzip -d codeqlCLI codeql-linux64.zip
+      - name: Prepare JDK8 src
+        run: |
+          git clone https://github.com/openjdk/jdk8u.git source/jdk8u-jdk8u382-ga && 
+          cd source/jdk8u-jdk8u382-ga && 
+          git checkout jdk8u382-ga
+      - name: Configure
+        run: |
+          make dist-clean &&
+          bash configure --with-boot-jdk=${JAVA_HOME}
+      - name: Create codeql db
+        run: ../../codeqlCLI/*/codeql database create database/jdk8u382-codeql-db --language=java --command='make images'
+      - name: Upload db
+        uses: actions/upload-artifact@v3
+        with:
+          name: jdk8u382-codeql-db
+          path: database/jdk8u382-codeql-db
