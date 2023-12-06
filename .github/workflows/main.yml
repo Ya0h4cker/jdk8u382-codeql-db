@@ -37,8 +37,9 @@ jobs:
           ls -lh
       - name: Configure
         run: |
-          make dist-clean &&
-          bash configure --with-boot-jdk=${JAVA_HOME}
+          # make dist-clean &&
+          bash configure --with-boot-jdk=${JAVA_HOME} &&
+          make images
       - name: Create codeql db
         run: ../codeql/codeql database create database/jdk8u382-codeql-db --language=java --command='make images'
       - name: Upload db
