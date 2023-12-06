@@ -40,6 +40,7 @@ jobs:
           pwd &&
           cd jdk8u-jdk8u382-ga &&
           # make dist-clean &&
+          echo ${JAVA_HOME} &&
           bash configure --with-boot-jdk=${JAVA_HOME} &&
           make images
       - name: Create codeql db
