@@ -21,24 +21,24 @@ jobs:
       - name: Prepare bootJDK
         run: |
           wget https://repo.huaweicloud.com/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz &&
-          tar zxvf jdk-7u80-linux-x64.tar.gz -C bootJDK &&
-          export JAVA_HOME=$(pwd)/bootJDK/jdk1.7.0_80 && 
+          tar zxvf jdk-7u80-linux-x64.tar.gz &&
+          export JAVA_HOME=$(pwd)/jdk1.7.0_80 && 
           echo $JAVA_HOME
       - name: Prepare CodeQL CLI
         run: |
           wget https://github.com/github/codeql-cli-binaries/releases/download/v2.15.3/codeql-linux64.zip && 
-          unzip -d codeqlCLI codeql-linux64.zip
+          unzip codeql-linux64.zip
       - name: Prepare JDK8 src
         run: |
-          git clone https://github.com/openjdk/jdk8u.git source/jdk8u-jdk8u382-ga && 
-          cd source/jdk8u-jdk8u382-ga && 
+          git clone https://github.com/openjdk/jdk8u.git jdk8u-jdk8u382-ga && 
+          cd jdk8u-jdk8u382-ga && 
           git checkout jdk8u382-ga
       - name: Configure
         run: |
           make dist-clean &&
           bash configure --with-boot-jdk=${JAVA_HOME}
       - name: Create codeql db
-        run: ../../codeqlCLI/*/codeql database create database/jdk8u382-codeql-db --language=java --command='make images'
+        run: ../codeql/codeql database create database/jdk8u382-codeql-db --language=java --command='make images'
       - name: Upload db
         uses: actions/upload-artifact@v3
         with:
