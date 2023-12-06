@@ -48,7 +48,7 @@ jobs:
           bash configure --with-boot-jdk=$(dirname $(pwd))/jdk1.7.0_80
           # make images
       - name: Create codeql db
-        run: ../codeql/codeql database create database/jdk8u382-codeql-db --language=java --command='make images'
+        run: codeql/codeql database create database/jdk8u382-codeql-db --language=java --source-root jdk8u-jdk8u382-ga --command='make images'
       - name: Upload db
         uses: actions/upload-artifact@v3
         with:
