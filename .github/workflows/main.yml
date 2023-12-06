@@ -32,7 +32,9 @@ jobs:
         run: |
           git clone https://github.com/openjdk/jdk8u.git jdk8u-jdk8u382-ga && 
           cd jdk8u-jdk8u382-ga && 
-          git checkout jdk8u382-ga
+          git checkout jdk8u382-ga &&
+          pwd &&
+          ls -lh
       - name: Configure
         run: |
           make dist-clean &&
