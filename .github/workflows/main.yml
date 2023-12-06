@@ -21,7 +21,7 @@ jobs:
       - name: Prepare bootJDK
         run: |
           wget https://repo.huaweicloud.com/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz &&
-          tar zxvf jdk-7u80-linux-x64.tar.gz bootJDK &&
+          tar zxvf jdk-7u80-linux-x64.tar.gz -C bootJDK &&
           export JAVA_HOME=$(pwd)/bootJDK/jdk1.7.0_80 && 
           echo $JAVA_HOME
       - name: Prepare CodeQL CLI
