@@ -22,8 +22,8 @@ jobs:
         run: |
           wget https://repo.huaweicloud.com/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz &&
           tar zxvf jdk-7u80-linux-x64.tar.gz &&
-          export JAVA_HOME=$(pwd)/jdk1.7.0_80 && 
-          echo $JAVA_HOME
+          # export JAVA_HOME=$(pwd)/jdk1.7.0_80 && 
+          # echo $JAVA_HOME
       - name: Prepare CodeQL CLI
         run: |
           wget https://github.com/github/codeql-cli-binaries/releases/download/v2.15.3/codeql-linux64.zip && 
@@ -40,8 +40,9 @@ jobs:
           pwd &&
           cd jdk8u-jdk8u382-ga &&
           # make dist-clean &&
-          echo ${JAVA_HOME} &&
-          bash configure --with-boot-jdk=${JAVA_HOME} &&
+          # echo ${JAVA_HOME} &&
+          echo $(dirname $(pwd))/jdk1.7.0_80 &&
+          bash configure --with-boot-jdk=$(dirname $(pwd))/jdk1.7.0_80 &&
           make images
       - name: Create codeql db
         run: ../codeql/codeql database create database/jdk8u382-codeql-db --language=java --command='make images'
