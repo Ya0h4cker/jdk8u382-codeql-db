@@ -17,7 +17,7 @@ jobs:
       - name: Install deps
         run: |
           sudo apt-get update && 
-          sudo apt-get install -y wget git file unzip zip libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev libfontconfig1-dev
+          sudo apt-get install -y wget git gcc-9=9.3.0-17ubuntu1~20.04 g++-9=9.3.0-17ubuntu1~20.04 make file unzip zip libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev libfontconfig1-dev
       - name: Prepare bootJDK
         run: |
           wget https://repo.huaweicloud.com/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz &&
