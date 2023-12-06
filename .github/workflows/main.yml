@@ -21,7 +21,7 @@ jobs:
           # gcc-9 --version
           # sudo update-alternatives --config gcc
           sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100 --slave /usr/bin/g++ g++ /usr/bin/g++-9
-      - name: Prepare bootJDK
+      - name: Prepare Boot JDK
         run: |
           wget https://repo.huaweicloud.com/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz &&
           tar zxvf jdk-7u80-linux-x64.tar.gz
