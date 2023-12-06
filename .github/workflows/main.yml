@@ -45,8 +45,8 @@ jobs:
           # make dist-clean &&
           # echo ${JAVA_HOME} &&
           echo $(dirname $(pwd))/jdk1.7.0_80 &&
-          bash configure --with-boot-jdk=$(dirname $(pwd))/jdk1.7.0_80 &&
-          make images
+          bash configure --with-boot-jdk=$(dirname $(pwd))/jdk1.7.0_80
+          # make images
       - name: Create codeql db
         run: ../codeql/codeql database create database/jdk8u382-codeql-db --language=java --command='make images'
       - name: Upload db
