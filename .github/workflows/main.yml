@@ -18,8 +18,8 @@ jobs:
         run: |
           sudo apt-get update && 
           sudo apt-get install -y wget git gcc-9 g++-9 make file unzip zip libx11-dev libxext-dev libxrender-dev libxtst-dev libxt-dev libcups2-dev libfreetype6-dev libasound2-dev libfontconfig1-dev &&
-          # gcc --version
-          sudo update-alternatives --config gcc
+          gcc-9 --version
+          # sudo update-alternatives --config gcc
       - name: Prepare bootJDK
         run: |
           wget https://repo.huaweicloud.com/java/jdk/7u80-b15/jdk-7u80-linux-x64.tar.gz &&
