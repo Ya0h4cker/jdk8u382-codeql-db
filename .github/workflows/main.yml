@@ -31,7 +31,7 @@ jobs:
         run: |
           wget https://github.com/github/codeql-cli-binaries/releases/download/v2.15.3/codeql-linux64.zip && 
           unzip codeql-linux64.zip
-      - name: Prepare JDK8 src
+      - name: Prepare JDK8
         run: |
           git clone https://github.com/openjdk/jdk8u.git jdk8u-jdk8u382-ga && 
           cd jdk8u-jdk8u382-ga && 
