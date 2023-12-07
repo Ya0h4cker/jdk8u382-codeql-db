@@ -1,5 +1,5 @@
 name: JDK Compiler
-run-name: build jdk8 codeql db
+run-name: build jdk8u382 codeql db
 on: [push]
   # schedule:
   #   - cron: '0 0 1 * *'
@@ -9,7 +9,7 @@ env:
 
 jobs:
 
-  checkout-jdk8-src:
+  build-jdk8u382-codeql-db:
     runs-on: ubuntu-22.04
     permissions:
       security-events: write
