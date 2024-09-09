@@ -1,6 +1,7 @@
 name: JDK Compiler
 run-name: build jdk8u382 codeql db
-on: [push]
+on: 
+  push
   schedule:
     - cron: '0 0 1 * *'
 
